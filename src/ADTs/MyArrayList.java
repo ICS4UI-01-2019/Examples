@@ -54,7 +54,18 @@ public class MyArrayList extends List{
      */
     @Override
     public void remove(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(pos >= this.numItems){
+            throw new IndexOutOfBoundsException(pos + " is not a valid position");
+        }else{
+            // shuffle items down to remove the one item
+            for(int i = pos; i < this.numItems-1; i++){
+                this.list[i] = this.list[i+1];
+            }
+            // decrease item counter
+            this.numItems--;
+            // zero out the last spot
+            this.list[this.numItems] = 0;
+        }
     }
 
     /**
@@ -73,10 +84,27 @@ public class MyArrayList extends List{
             throw new IndexOutOfBoundsException(pos + " is not a valid position");
         }
     }
-
+    
+    /**
+     * Inserts an item at the given position
+     * @param pos the position to insert the item
+     * @param n the item to insert
+     */
     @Override
     public void insert(int pos, int n) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(pos > this.numItems){
+            throw new IndexOutOfBoundsException(pos + " is not a valid position");
+        }else{
+            // add it to the end
+            this.add(n);
+            // swap it down into position
+            for(int i = this.numItems-1;i > pos; i--){
+                int temp = this.list[i];
+                this.list[i] = this.list[i-1];
+                this.list[i-1] = temp;
+            }
+        }
+        
     }
 
     /**
@@ -85,12 +113,17 @@ public class MyArrayList extends List{
      */
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.numItems;
     }
 
+    
+    /**
+     * Returns if the list is empty or not
+     * @return true if the list contains no items
+     */
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.size() == 0;
     }
     
 }

@@ -5,6 +5,9 @@
  */
 package ADTs;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /**
  *
  * @author lamon
@@ -15,6 +18,9 @@ public class ADTTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ArrayList<String> names = new ArrayList<>();
+        LinkedList<String> names2 = new LinkedList<>();
+        
         MyArrayList aList = new MyArrayList();
         
         aList.add(7);
@@ -30,7 +36,9 @@ public class ADTTest {
         aList.add(-190);
         aList.add(7100);
         
-        for(int i = 0; i < 12; i++){
+        aList.remove(2);
+        aList.insert(2, 1337);
+        for(int i = 0; i < aList.size(); i++){
             System.out.println(aList.get(i));
         }
     }
